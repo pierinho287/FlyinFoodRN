@@ -1,30 +1,30 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { SocialIcon, Divider  } from 'react-native-elements';
-
 import {
+  AppRegistry,
   Platform,
   StyleSheet,
   Text,
   View,
+  Button,
   Image
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import { SocialIcon, Divider  } from 'react-native-elements';
 
-export default class App extends Component<{}> {
+export default class Login extends Component<{}> {
+  static navigationOptions = { title: '', headerStyle: {
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        height: 50,
+        top: 0,
+        left: 0,
+        right: 0,
+        // borderBottomWidth: 0 // removes the border on the bottom
+      },
+      headerTintColor: '#fff'
+    };
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View source={{uri: 'wall'}} style={styles.container}>
         <View
@@ -53,20 +53,19 @@ export default class App extends Component<{}> {
           button
           style={{width: 240}}
           type='facebook'
+		      onPress={() => navigate('Main', { name: 'JP' })}
         />
-
         <SocialIcon
-          title='  Sign In With Google  '
+          title='Sign In With Google'
           button
           style={{width: 240}}
           type='google-plus-official'
+          onPress={() => navigate('Main', { name: 'JP' })}
         />
-
       </View>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -75,14 +74,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'transparent',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
 });
+
+AppRegistry.registerComponent('Login', () => Login);
